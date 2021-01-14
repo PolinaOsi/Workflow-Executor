@@ -44,11 +44,9 @@ map<int, shared_ptr<IWorker>> ProgramParser::parseBlockPart(ifstream& workflowFi
     workflowFile >> nextLine;
     while (nextLine != "csed") {
         try {
-//            cout << "nextL: " << nextLine << endl; //TODO:
             nextIdx = stoi(nextLine);
             if (blocks.count(nextIdx)) {
                 errorHandler("Index " + to_string(nextIdx) + " already exists!");
-                //TODO: разобраться с исключ
             } else {
                 blocks[nextIdx] = parseBlock(workflowFile);
             }
@@ -79,9 +77,6 @@ list<int> parseQueuePart(ifstream& workflowFile){
                 break;
             }
             workflowFile >> nextWord;
-           /* if (nextWord != "->") {
-                errorHandler("Unknown symbol at queue part: " + nextWord);
-            }*/
         } catch (exception &e) {
             cout << "QUEUE     \n";
             throw invalid_argument(e.what());
@@ -89,8 +84,6 @@ list<int> parseQueuePart(ifstream& workflowFile){
     }
     return queue;
 }
-
-//TODO:inFile oFile потом в конце инициализировать как блоки, те добавть в queue в конец и начало
 Blueprint::blueprint ProgramParser::parseProgram(const string &file, const string &inputFile, const string &outputFile){
     if (!isFileExists(file)){
         errorHandler("Wrong input from prompt!");
