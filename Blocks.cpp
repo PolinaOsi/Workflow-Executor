@@ -18,7 +18,6 @@ void DumpBlock::execute(conveyor &curStage) {
     string&& verdict = isValid(curStage);
     if(!verdict.empty()){
         errorHandler(move(verdict));
-        //end of work
     }
     curStage.haveOutput = true;
     curStage.output = curStage.input;
@@ -38,11 +37,10 @@ void GrepBlock::errorHandler(string &&messages) {
     throw logic_error(messages);
 }
 
-void GrepBlock::execute(conveyor &curStage) { //TODO: тут возможно придется изменить input в блок
+void GrepBlock::execute(conveyor &curStage) { 
     string&& verdict = isValid(curStage);
     if(!verdict.empty()){
         errorHandler(move(verdict));
-        //end of work
     }
     curStage.haveOutput = true;
     if (curStage.input.empty()){
@@ -75,7 +73,6 @@ void ReadFileBlock::execute(conveyor &curStage) {
     string&& verdict = isValid(curStage);
     if(!verdict.empty()){
         errorHandler(move(verdict));
-        //end of work
     }
     string nextLine;
     curStage.haveOutput = true;
@@ -100,7 +97,6 @@ void ReplaceBlock::execute(conveyor& curStage) {
     string&& verdict = isValid(curStage);
     if(!verdict.empty()){
         errorHandler(move(verdict));
-        //end of work
     }
     curStage.haveOutput = true;
     curStage.output = curStage.input;
@@ -130,7 +126,6 @@ void SortBlock::execute(conveyor& curStage) {
     string&& verdict = isValid(curStage);
     if(!verdict.empty()){
         errorHandler(move(verdict));
-        //end of work
     }
     curStage.haveOutput = true;
     curStage.output = curStage.input;
@@ -158,7 +153,6 @@ void WriteFileBlock::execute(conveyor &curStage) {
     string&& verdict = isValid(curStage);
     if(!verdict.empty()){
         errorHandler(move(verdict));
-        //end of work
     }
     curStage.haveOutput = false;
     for (const auto& str: curStage.input){
